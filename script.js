@@ -33,7 +33,7 @@ function showVowels() {
 
 // Punto 4: Contar las vocales de una frase
 function countVowels() {
-    const phrase = document.getElementById('phrase-input').value;
+    const phrase = document.getElementById('vowel-phrase-input').value;
     const vowelsCount = { a: 0, e: 0, i: 0, o: 0, u: 0 };
     for (let char of phrase.toLowerCase()) {
         if (vowelsCount.hasOwnProperty(char)) {
@@ -48,7 +48,7 @@ function countVowels() {
 
 // AJAX: Mostrar contenido de la URL ingresada
 function fetchContent() {
-    const url = document.getElementById('url-input').value;
+    const url = document.getElementById('fetch-url-input').value;
     const requestStatus = document.getElementById('request-status');
     const content = document.getElementById('content');
     const headers = document.getElementById('headers');
@@ -73,19 +73,42 @@ function fetchContent() {
             case 4:
                 if (xhr.status >= 200 && xhr.status < 300) {
                     requestStatus.textContent = 'Petición completada';
-                    content.innerHTML = xhr.responseText;
-                    headers.textContent = xhr.getAllResponseHeaders();
+                    const contentType = xhr.getResponseHeader('Content-Type');
+                    if (contentType && contentType.includes('application/json')) {
+                        try {
+                            const jsonResponse = JSON.parse(xhr.responseText);
+                            content.innerHTML = `<pre>${JSON.stringify(jsonResponse, null, 2)}</pre>`;
+                        } catch (e) {
+                            content.textContent = 'Error al analizar la respuesta JSON';
+                        }
+                    } else if (contentType && contentType.includes('text/html')) {
+                        content.innerHTML = xhr.responseText;
+                    } else {
+                        content.textContent = 'Tipo de contenido no soportado: ' + contentType;
+                    }
+                    headers.innerHTML = `<pre>${xhr.getAllResponseHeaders()}</pre>`;
                     statusCode.textContent = `Código de estado: ${xhr.status} - ${xhr.statusText}`;
                 } else {
                     requestStatus.textContent = 'Error en la petición';
-                    content.textContent = '';
-                    headers.textContent = '';
+                    content.textContent = 'No se puede mostrar el contenido de la URL solicitada.';
+                    headers.textContent = 'No se encontraron cabeceras.';
                     statusCode.textContent = `Código de estado: ${xhr.status} - ${xhr.statusText}`;
                 }
                 break;
         }
     };
     
-    xhr.open('GET', url, true);
-    xhr.send();
+    try {
+        xhr.open('GET', url, true);
+        xhr.send();
+    } catch (error) {
+        requestStatus.textContent = 'Error al realizar la petición';
+        content.textContent = 'No se puede mostrar el contenido de la URL solicitada. Verifica la URL.';
+        headers.textContent = 'No se encontraron cabeceras.';
+        statusCode.textContent = 'Error: URL no válida o petición bloqueada.';
+    }
 }
+
+
+
+

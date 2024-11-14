@@ -41,6 +41,8 @@
             
             <h3>Punto 4: Contar las vocales de una frase</h3>
             <div class="exercise">
+                <label for="vowel-phrase-input">Introduce una frase:</label>
+                <input type="text" id="vowel-phrase-input" placeholder="Introduce una frase">
                 <button onclick="countVowels()">Contar Vocales</button>
                 <p id="vowel-count-result"></p>
             </div>
@@ -49,17 +51,17 @@
         <section id="ajax-section">
             <h2>AJAX</h2>
             
-            <h3>Punto 1: Mostrar la URL actual en el cuadro de texto</h3>
+            <h3>Punto 1: Mostrar la URL actual</h3>
             <div class="exercise">
-                <label for="url-input">URL:</label>
-                <input type="text" id="url-input">
-                <button onclick="fetchContent()">Mostrar Contenidos</button>
+                <label for="url-input">URL actual:</label>
+                <input type="text" id="url-input" readonly>
             </div>
             
-            <h3>Punto 2: Mostrar contenido de la URL</h3>
-            <div class="ajax-result">
-                <h3>Contenido de la URL</h3>
-                <div id="content"></div>
+            <h3>Punto 2: Ingresar una URL para mostrar el contenido</h3>
+            <div class="exercise">
+                <label for="fetch-url-input">URL:</label>
+                <input type="text" id="fetch-url-input" placeholder="Introduce una URL">
+                <button onclick="fetchContent()">Mostrar Contenidos</button>
             </div>
             
             <h3>Punto 3: Mostrar estado de la petición</h3>
@@ -79,9 +81,16 @@
                 <h3>Código de Estado</h3>
                 <p id="status-code"></p>
             </div>
+
+            <h3>Punto 6: Mostrar contenido de la URL</h3>
+            <div class="ajax-result">
+                <h3>Contenido de la URL</h3>
+                <div id="content"></div>
+            </div>
         </section>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+
