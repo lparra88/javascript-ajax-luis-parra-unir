@@ -6,5 +6,82 @@
     <link rel="stylesheet" href="styles.css">
     <title>Mi Blog Personal</title>
 </head>
+<body>
+    <div class="container">
+        <h1>Ejercicios con JavaScript y AJAX</h1>
+        
+        <section id="javascript-section">
+            <h2>JavaScript</h2>
+            
+            <h3>Punto 1: Detectar si la cadena es un palíndromo</h3>
+            <div class="exercise">
+                <label for="palindrome-input">Detectar Palíndromo:</label>
+                <input type="text" id="palindrome-input" placeholder="Introduce una cadena">
+                <button onclick="checkPalindrome()">Verificar</button>
+                <p id="palindrome-result"></p>
+            </div>
+            
+            <h3>Punto 2: Encontrar el número mayor</h3>
+            <div class="exercise">
+                <label for="number1">Número 1:</label>
+                <input type="number" id="number1">
+                <label for="number2">Número 2:</label>
+                <input type="number" id="number2">
+                <button onclick="findGreater()">Encontrar Mayor</button>
+                <p id="greater-result"></p>
+            </div>
+            
+            <h3>Punto 3: Mostrar las vocales de una frase</h3>
+            <div class="exercise">
+                <label for="phrase-input">Introduce una frase:</label>
+                <input type="text" id="phrase-input" placeholder="Introduce una frase">
+                <button onclick="showVowels()">Mostrar Vocales</button>
+                <p id="vowels-result"></p>
+            </div>
+            
+            <h3>Punto 4: Contar las vocales de una frase</h3>
+            <div class="exercise">
+                <button onclick="countVowels()">Contar Vocales</button>
+                <p id="vowel-count-result"></p>
+            </div>
+        </section>
+        
+        <section id="ajax-section">
+            <h2>AJAX</h2>
+            
+            <h3>Punto 1: Mostrar la URL actual en el cuadro de texto</h3>
+            <div class="exercise">
+                <label for="url-input">URL:</label>
+                <input type="text" id="url-input">
+                <button onclick="fetchContent()">Mostrar Contenidos</button>
+            </div>
+            
+            <h3>Punto 2: Mostrar contenido de la URL</h3>
+            <div class="ajax-result">
+                <h3>Contenido de la URL</h3>
+                <div id="content"></div>
+            </div>
+            
+            <h3>Punto 3: Mostrar estado de la petición</h3>
+            <div class="ajax-result">
+                <h3>Estado de la Petición</h3>
+                <p id="request-status"></p>
+            </div>
+            
+            <h3>Punto 4: Mostrar cabeceras HTTP de la respuesta</h3>
+            <div class="ajax-result">
+                <h3>Cabeceras HTTP de la Respuesta</h3>
+                <div id="headers"></div>
+            </div>
+            
+            <h3>Punto 5: Mostrar código de estado de la respuesta</h3>
+            <div class="ajax-result">
+                <h3>Código de Estado</h3>
+                <p id="status-code"></p>
+            </div>
+        </section>
+    </div>
 
+    <script src="script.js"></script>
+</body>
 </html>
